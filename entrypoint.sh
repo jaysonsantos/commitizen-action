@@ -5,6 +5,7 @@ if [ $INPUT_CHANGELOG ]; then INPUT_CHANGELOG='--changelog'; else INPUT_CHANGELO
 if [ $INPUT_PRERELEASE ]; then INPUT_PRERELEASE="--prerelease $INPUT_PRERELEASE"; else INPUT_PRERELEASE=''; fi
 INPUT_BRANCH=${INPUT_BRANCH:-master}
 INPUT_EXTRA_REQUIREMENTS=${INPUT_EXTRA_REQUIREMENTS:-''}
+INPUT_CUSTOM_COMMITZEN_INSTALL=${INPUT_CUSTOM_COMMITZEN_INSTALL:-'commitizen'}
 REPOSITORY=${INPUT_REPOSITORY:-$GITHUB_REPOSITORY}
 # : "${INPUT_CHANGELOG:=true}" ignroed for now, let's check that it works
 
@@ -19,7 +20,7 @@ echo "Repository: $REPOSITORY"
 echo "Actor: $GITHUB_ACTOR"
 
 echo "Installing requirements..."
-pip install commitizen $INPUT_EXTRA_REQUIREMENTS
+pip install $INPUT_CUSTOM_COMMITZEN_INSTALL $INPUT_EXTRA_REQUIREMENTS
 echo "Commitizen version:"
 cz version
 
